@@ -14,6 +14,11 @@
 <body>
 
 <div id='map'></div>
+
+//reference your geojson file, that you convert to javascript
+
+<script type="text/javascript" src="http://faculty.washington.edu/bricker0/js/TFDvor.js"></script>
+
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoiYnJpY2tlciIsImEiOiJULVRnSlZZIn0.LHt8a4ByC-_b4ytgeh7H5Q';
 var map = new mapboxgl.Map({
@@ -23,6 +28,10 @@ var map = new mapboxgl.Map({
     zoom: 9 // starting zoom
     
 });
+
+
+var geojson = L.geoJson(FirePolygon).addTo(map);
+
 </script>
 
 </body>

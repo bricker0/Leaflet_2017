@@ -1,4 +1,3 @@
-var TFDpoly = 
 
 {
 "type": "FeatureCollection",
