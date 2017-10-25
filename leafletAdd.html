@@ -66,7 +66,7 @@
 
 		//add the geoJson file but no style
 
-L.geoJson(TFDpoly).addTo(map);
+// L.geoJson(TFDpoly).addTo(map);
 
 /// get color depending on YTD_Count which represents number of calls in the grid cell - first set color scheme
 		function getColor(d) {
@@ -83,7 +83,6 @@ L.geoJson(TFDpoly).addTo(map);
 //styling the GeoJSON so that fill changes with the value associated with the cell and number of calls
 	function style(feature) {
     return {
-        
         weight: 1,
         opacity: 1,
         color: 'white',
