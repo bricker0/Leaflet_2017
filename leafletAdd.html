@@ -81,14 +81,15 @@ L.geoJson(TFDpoly).addTo(map);
 		}
 
 //styling the GeoJSON so that fill changes with the value associated with the cell and number of calls
-		function style(feature) {
+	function style(feature) {
     return {
-        fillColor: getColor(feature.properties.Input_FID),
-        weight: 2,
+        
+        weight: 1,
         opacity: 1,
         color: 'white',
         dashArray: '3',
-        fillOpacity: 0.7
+        fillOpacity: 0.7,
+        fillColor: getColor(feature.properties.Input_FID)
     };
 }
 
