@@ -10,11 +10,37 @@
 	
 	<style>
 		#map {
-			width: 800px;
-			height: 500px;
+			width: 100%;
+			height: 1000px;
 		}
 
-	
+			.info {
+			padding: 6px 8px;
+			font: 14px/16px Arial, Helvetica, sans-serif;
+			background: white;
+			background: rgba(255,255,255,0.8);
+			box-shadow: 0 0 15px rgba(0,0,0,0.2);
+			border-radius: 5px;
+		}
+		.info h4 {
+			margin: 0 0 5px;
+			color: #777;
+		}
+
+		.legend {
+			text-align: left;
+			line-height: 18px;
+			color: #555;
+		}
+		.legend i {
+			width: 18px;
+			height: 18px;
+			float: left;
+			margin-right: 8px;
+			opacity: 0.7;
+		}
+	</style>
+
 		
 	</style>
 </head>
@@ -22,6 +48,9 @@
 <body>
 
 	<div id="map"></div>
+
+	<!--here is the reference the call to the geojson that I converted to js - if you look at this file- you will see I named the var 
+		TFDpoly can you find that later in this code? replace that with your variable name -->
 
 <script type="text/javascript" src="http://faculty.washington.edu/bricker0/js/TFDvor.js"></script>
 	
@@ -38,6 +67,34 @@
 		//add the geoJson file but no style
 
 L.geoJson(TFDpoly).addTo(map);
+
+/// get color depending on YTD_Count which represents number of calls in the grid cell - first set color scheme
+		function getColor(d) {
+			return d > 12 ? '#800026' :
+			       d > 10  ? '#BD0026' :
+			       d > 8  ? '#E31A1C' :
+			       d > 6  ? '#FC4E2A' :
+			       d > 4  ? '#FD8D3C' :
+			       d > 2   ? '#FEB24C' :
+			       d > 0   ? '#FED976' :
+			                  '#FFEDA0';
+		}
+
+//styling the GeoJSON so that fill changes with the value associated with the cell and number of calls
+		function style(feature) {
+    return {
+        fillColor: getColor(feature.properties.Input_FID),
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.7
+    };
+}
+
+L.geoJson(TFDpoly, {style: style}).addTo(map);
+
+			map.on('click', onMapClick);
 
 
 
